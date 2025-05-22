@@ -6,7 +6,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* Стили */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #667eea, #764ba2);
@@ -210,6 +209,7 @@
   <button data-section="viewSection">Просмотр журнала</button>
   <button data-section="editSection">Редактирование журнала</button>
   <button data-section="statsSection">Статистика</button>
+  <button data-section="helpSection">Помощь</button>
   <button data-section="aboutSection">О программе</button>
 </nav>
 
@@ -233,7 +233,6 @@
     <button id="exportTXTBtn">Экспорт в TXT</button>
   </div>
   <div id="editTableContainer"></div>
-  <!-- Убрали блок статистики под таблицей редактирования -->
 </section>
 
 <section id="statsSection">
@@ -255,6 +254,34 @@
   <div style="text-align:center; margin-top:40px;">
     <img src="https://i.ytimg.com/vi/qwvGy57GSfs/maxresdefault.jpg" alt="Фото автора" style="width:120px; height:120px; border-radius:50%; object-fit:cover; box-shadow:0 0 10px rgba(0,0,0,0.3);">
     <p style="margin-top:10px; font-weight:bold; color:#fff;">Автор: Коноплев Юрий</p>
+  </div>
+</section>
+
+<section id="helpSection">
+  <h2>Помощь</h2>
+  <div style="font-size:1.1rem; line-height:1.7;">
+    <ul style="margin-left:0; padding-left:20px;">
+      <li>
+        <strong>Загрузка журнала:</strong><br>
+        Здесь вы можете загрузить файл с оценками в формате <b>XLSX</b>, <b>CSV</b> или <b>TXT</b>. После загрузки данные сохраняются в браузере и становятся доступны для просмотра и редактирования.
+      </li>
+      <li style="margin-top:15px;">
+        <strong>Просмотр журнала:</strong><br>
+        На этой вкладке отображается таблица с оценками всех учеников по всем предметам. Данные доступны только для просмотра.
+      </li>
+      <li style="margin-top:15px;">
+        <strong>Редактирование журнала:</strong><br>
+        Здесь можно изменять оценки, ФИО и класс учеников прямо в таблице. Можно добавлять новых учеников, удалять существующих, а также экспортировать журнал в форматы CSV, XLSX или TXT.
+      </li>
+      <li style="margin-top:15px;">
+        <strong>Статистика:</strong><br>
+        На этой вкладке отображаются графики и таблицы со средними и медианными баллами по каждому предмету и классу, а также общая статистика по всем оценкам.
+      </li>
+      <li style="margin-top:15px;">
+        <strong>О программе:</strong><br>
+        Содержит информацию об авторе и контактную почту для обратной связи.
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -421,7 +448,6 @@
       btn.addEventListener('click', handleDeleteUser);
     });
 
-    // Убрали вызов renderGradeStats для редактирования (статистика под таблицей)
     document.getElementById('editGradeStats').innerHTML = '';
   }
 
@@ -640,8 +666,7 @@
 
       tableContainer.appendChild(table);
     });
-
-    // Подсчёт и вывод количества и процентов оценок под диаграммами
+    
     const counts = {1:0,2:0,3:0,4:0,5:0};
     let totalGrades = 0;
     gradeBook.forEach(row => {
